@@ -9,12 +9,15 @@ public class DivisibilityChecker {
         int remainder = 0;
 
         for (int i = 0; i < number.length(); i++) {
-            int digit = number.charAt(i) - '0';
-            remainder = (remainder * 10 + digit) % divisor;
+
+            // for eg: 507
+            int digit = number.charAt(i) - '0'; // we get digit as 5
+            remainder = (remainder * 10 + digit) % divisor; // now we do, 0 * 10 + 5 % 13 = 5
         }
 
         return remainder == 0;
     }
+
 
     public static void main(String[] args) {
         String num1 = "507";
