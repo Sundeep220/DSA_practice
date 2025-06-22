@@ -19,7 +19,7 @@ public class PowerSet {
 
     void generate(String s, int index, String currentSubseq, List<String> result){
         if(index == s.length()){
-            // if we came at the end of string
+            // if we came at the end of the string
             if(!currentSubseq.isEmpty()){
                 // If this is not empty, then add it
                 result.add(currentSubseq);
@@ -27,10 +27,10 @@ public class PowerSet {
             return;
         }
 
-        // include the current character and go to next step
+        // include the current character and go to the next step
         generate(s, index + 1, currentSubseq + s.charAt(index), result);
 
-        // exclude the current character and go to next step
+        // exclude the current character and go to the next step
         generate(s, index + 1, currentSubseq, result);
     }
 }

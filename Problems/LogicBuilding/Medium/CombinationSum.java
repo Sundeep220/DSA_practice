@@ -21,9 +21,15 @@ public class CombinationSum {
         // Pick the current number
         current.add(candidates[index]);
         backtrack(index, candidates, target - candidates[index], current, res);
-        current.remove(current.size() - 1); // backtrack
+        current.removeLast(); // backtrack
 
         // Skip the current number
         backtrack(index + 1, candidates, target, current, res);
+    }
+
+    public static void main(String[] args) {
+        int[] candidates = {2, 3, 6, 7};
+        int target = 7;
+        System.out.println(new CombinationSum().combinationSum(candidates, target));
     }
 }

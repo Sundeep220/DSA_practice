@@ -30,7 +30,7 @@ public class Combinations {
     }
 
     public static void main(String[] args) {
-        int n = 4, k = 2;
+        int n = 4, k = 3;
         System.out.println(new Combinations().combine(n, k));
     }
 
