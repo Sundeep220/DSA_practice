@@ -16,7 +16,7 @@ public class QuickSort {
     public void quickSort(int[] arr, int low, int high) {
         if (low < high) {  // base case
             int pi = partition(arr, low, high); // finding pivot
-            quickSort(arr, low, pi);        // note: not pi - 1
+            quickSort(arr, low, pi - 1);        // note: not pi - 1
             quickSort(arr, pi + 1, high);
         }
     }
@@ -27,10 +27,11 @@ public class QuickSort {
         int j = high;
 
         while (i < j) {
+            // find the first element greater than pivot
             while (arr[i] <= pivot && i <= high - 1) {  // move i forward if arr[i] <= pivot
                 i++;
             }
-
+            // find the first element less than pivot
             while (arr[j] > pivot && j >= low + 1) {  // move j backward if arr[j] > pivot
                 j--;
             }
