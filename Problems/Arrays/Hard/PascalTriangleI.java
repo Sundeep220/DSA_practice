@@ -41,6 +41,8 @@ public class PascalTriangleI {
     public static long nCr(int n, int r) {
         long res = 1;
 
+        r = Math.min(r, n - r); // as nCr(n, r) = nCr(n, n-r)
+
         // calculating nCr:
         for (int i = 0; i < r; i++) {
             res = res * (n - i);

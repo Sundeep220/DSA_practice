@@ -31,10 +31,29 @@ public class TwoSum {
         return new int[] {-1, -1};
     }
 
+    // Most Optimal Solution: Two Pointers
+    // Time Complexity: O(nlogn), Space Complexity: O(1)
+    public static int[] twoSumOptimal2(int[] nums, int target) {
+        Arrays.sort(nums);
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum < target) {
+                left++;
+            } else if (sum > target) {
+                right--;
+            } else {
+                return new int[] { left, right };
+            }
+        }
+        return new int[] { -1, -1 };
+    }
+
     public static void main(String[] args) {
         int[] nums = { 2, 7, 11, 15 };
         int target = 9;
         System.out.println(Arrays.toString(twoSumBruteForce(nums, target)));
         System.out.println(Arrays.toString(twoSumOptimal(nums, target)));
+        System.out.println(Arrays.toString(twoSumOptimal2(nums, target)));
     }
 }
