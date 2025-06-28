@@ -46,7 +46,7 @@ public class CountSubarrayWithGivenSum {
     // Optimal Solution: Using Prefix Sum and Hashmap
     // Time Complexity: O(n) Space Complexity: O(n)
     public static int subarraySumOptimal(int[] nums, int k) {
-        Map<Integer, Integer> prefix = new HashMap<>(); // storing prefix sum with their count
+        Map<Integer, Integer> prefix = new HashMap<>(); // storing the freq of sums for each subarray
         int count = 0, curSum = 0;
         for (int num : nums) {
             curSum += num;
