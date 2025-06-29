@@ -27,11 +27,11 @@ public class QuickSort {
         int j = high;
 
         while (i < j) {
-            // find the first element greater than pivot
+            // find the first element from left greater than pivot
             while (arr[i] <= pivot && i <= high - 1) {  // move i forward if arr[i] <= pivot
                 i++;
             }
-            // find the first element less than pivot
+            // find the first element from right less than pivot
             while (arr[j] > pivot && j >= low + 1) {  // move j backward if arr[j] > pivot
                 j--;
             }

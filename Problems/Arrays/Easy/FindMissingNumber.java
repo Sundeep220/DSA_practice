@@ -26,7 +26,7 @@ public class FindMissingNumber {
 
 
     public static void main(String[] args) {
-        int[] nums = { 9, 6, 4, 2, 3, 5, 7, 0, 1, 3 };
+        int[] nums = { 9, 6, 4, 2, 3, 5, 7, 0, 1 };
         System.out.println("Using Sum of natural numbers formula: " + findMissingNumber(nums));
         System.out.println("Using XOR: " + findMissingNumber2(nums));
     }
