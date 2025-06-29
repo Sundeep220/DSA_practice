@@ -92,13 +92,14 @@ public class SetMatrixZeroes {
         boolean firstRowHasZero = false;
         boolean firstColHasZero = false;
 
-        // Step 1: Check first row and first column
+        // Step 1: Check first column of each row
         for (int i = 0; i < m; i++) {
             if (matrix[i][0] == 0) {
                 firstColHasZero = true;
                 break;
             }
         }
+        // Step 1: Check first row of each column
         for (int j = 0; j < n; j++) {
             if (matrix[0][j] == 0) {
                 firstRowHasZero = true;
