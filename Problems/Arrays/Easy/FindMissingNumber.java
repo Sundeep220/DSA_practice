@@ -1,6 +1,7 @@
 package Problems.Arrays.Easy;
 
 public class FindMissingNumber {
+
     // Optimal Solution1: using Sum of natural numbers formula
     public static int findMissingNumber(int[] nums) {
         int n = nums.length;
@@ -25,7 +26,7 @@ public class FindMissingNumber {
 
 
     public static void main(String[] args) {
-        int[] nums = { 9, 6, 4, 2, 3, 5, 7, 0, 1 };
+        int[] nums = { 9, 6, 4, 2, 3, 5, 7, 0, 1, 3 };
         System.out.println("Using Sum of natural numbers formula: " + findMissingNumber(nums));
         System.out.println("Using XOR: " + findMissingNumber2(nums));
     }
