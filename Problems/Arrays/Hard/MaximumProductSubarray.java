@@ -35,6 +35,7 @@ public class MaximumProductSubarray {
         int prefix = 1, suffix = 1;
         int max = Integer.MIN_VALUE;
         for(int i = 0; i < n; i++) {
+            // if we encountered 0 anywhere, we reset our prefix and suffix
             if(prefix == 0) prefix = 1;
             if(suffix == 0) suffix = 1;
             prefix *= nums[i];

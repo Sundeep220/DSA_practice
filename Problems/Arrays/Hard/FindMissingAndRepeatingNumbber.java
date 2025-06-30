@@ -123,6 +123,8 @@ public class FindMissingAndRepeatingNumbber {
         //Step 3: Group the numbers:
         int zero = 0;
         int one = 0;
+
+        // Step 3: Group the numbers in array
         for (int j : a) {
             //part of 1 group:
             if ((j & number) != 0) {
@@ -133,7 +135,7 @@ public class FindMissingAndRepeatingNumbber {
                 zero = zero ^ j;
             }
         }
-
+        // Step 3: Group the natural numbers
         for (int i = 1; i <= n; i++) {
             //part of 1 group:
             if ((i & number) != 0) {

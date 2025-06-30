@@ -31,7 +31,10 @@ public class ReversePairs {
         int mid = start + (end - start) / 2;
         count += mergeSort(nums, start, mid);
         count += mergeSort(nums, mid + 1, end);
+        // before merging, count the pairs
         count += countPairs(nums, start, mid, end);
+
+        // then merge
         merge(nums, start, mid, end);
         return count;
     }
@@ -40,6 +43,9 @@ public class ReversePairs {
         int count = 0, j = mid + 1;
         for(int i = start; i <= mid; i++) {
             while(j <= end && nums[i] > 2 * nums[j]) {
+                // move until nums[j] is less than 2 * nums[i], this gives count of numbers for future refercnce,
+                // for eg: [6, 13, 24]  and [1,2,3,5,7] if 6 -> {1, 2} then 13 and 24 will definitetly have {1,2} as smaller number 6
+                // is greater than 2 * 1 & 2 *2 .
                 j++;
             }
             count += j - mid - 1;  // j - (mid + 1)

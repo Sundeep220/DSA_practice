@@ -40,7 +40,7 @@ public class ThreeSum {
                 //Find the element in the set:
                 if (hashset.contains(third)) {
                     List<Integer> temp = Arrays.asList(arr[i], arr[j], third);
-                    temp.sort(null);
+                    temp.sort(Integer::compareTo);
                     st.add(temp);
                 }
                 hashset.add(arr[j]);
