@@ -25,9 +25,9 @@ public class FindPeak {
         int n = arr.size(); // Size of array
 
         // Edge cases:
-        if (n == 1) return 0;
-        if (arr.get(0) > arr.get(1)) return 0;
-        if (arr.get(n - 1) > arr.get(n - 2)) return n - 1;
+        if (n == 1) return 0;   // Only one element then no peak
+        if (arr.get(0) > arr.get(1)) return 0;   // First element is the peak if it is greater than its neighbour to the right
+        if (arr.get(n - 1) > arr.get(n - 2)) return n - 1; // Last element is the peak if it is greater than its neighbour to the left
 
         int low = 1, high = n - 2;
         while (low <= high) {
