@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.Easy;
+package Problems.SearchingProblems.BinarySearch.Arrays.Medium;
 
 public class FloorAndCeil {
     //Problem: https://www.naukri.com/code360/problems/ceiling-in-a-sorted-array_1825401

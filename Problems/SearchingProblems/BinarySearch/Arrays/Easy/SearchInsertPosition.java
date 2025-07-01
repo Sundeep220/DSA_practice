@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.Easy;
+package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
 
 public class SearchInsertPosition {
     //Problem: https://leetcode.com/problems/search-insert-position/

@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.Easy;
+package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
 
 public class LastOccurance {
     // Problem: Given a sorted array of N integers, write a program to find the index of the last occurrence of the target key. If the target is not found then return -1.
