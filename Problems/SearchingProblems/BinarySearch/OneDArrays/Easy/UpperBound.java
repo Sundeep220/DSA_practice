@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Easy;
 
 public class UpperBound {
     // Problem: Similar to Lower Bound but returns index of first element > target

@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Hard;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Hard;
 import java.util.*;
 public class FindPeak {
     // Problem: https://leetcode.com/problems/find-peak-element/

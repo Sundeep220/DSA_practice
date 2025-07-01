@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Medium;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Medium;
 
 public class SearchRotatedArrayII {
     // Problem: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/

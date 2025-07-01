@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Easy;
 
 public class FindNumberOfRotations{
     // Problem: https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/

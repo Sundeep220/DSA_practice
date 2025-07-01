@@ -1,6 +1,6 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Easy;
 
-import static Problems.SearchingProblems.BinarySearch.Arrays.Easy.LastOccurance.lastOccurrence;
+import static Problems.SearchingProblems.BinarySearch.OneDArrays.Easy.LastOccurance.lastOccurrence;
 
 public class CountOccurrences {
     // problem: Given a sorted array, and element X, find the number of occurrences of X in the array

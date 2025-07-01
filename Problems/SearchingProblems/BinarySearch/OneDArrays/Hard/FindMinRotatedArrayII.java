@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Hard;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Hard;
 
 public class FindMinRotatedArrayII {
     // Problem: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/

@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Easy;
 
 public class LowerBound {
     // Problem: https://www.naukri.com/code360/problems/lower-bound_8165382

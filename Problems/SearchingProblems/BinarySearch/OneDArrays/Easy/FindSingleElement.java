@@ -1,4 +1,4 @@
-package Problems.SearchingProblems.BinarySearch.Arrays.Easy;
+package Problems.SearchingProblems.BinarySearch.OneDArrays.Easy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
