@@ -43,7 +43,7 @@ public class MinimizeMaxDistanceBwGasStations {
         for(int i = 0; i < k; i++){
             // Find the maximum section
             // and insert the gas station:
-            Pair tp = pq.poll();
+            Pair tp = pq.poll(); // poll returns the maximum element and removes it-
 //            assert tp != null;  // ensure tp is not null if this is not true, then the program will crash
             int maxDiffIndex = tp.index;
 
@@ -54,7 +54,38 @@ public class MinimizeMaxDistanceBwGasStations {
             double newSecLen = inidiff / (double) (stations[maxDiffIndex] + 1);
             pq.add(new Pair(newSecLen, maxDiffIndex));
         }
-        return pq.peek().diff;
+        return pq.peek().diff; // peek returns the maximum element
+    }
+
+    // Using Binary Search
+    // Time Complexity: O(klogn) | Space Complexity: O(1)
+    public static int countStations(int[] nums, double distance) {
+        int count = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            int stations = (int) ((nums[i + 1] - nums[i]) / distance);
+            if(nums[i + 1] - nums[i] == distance * stations){
+                stations--;
+            }
+            count += stations;
+        }
+        return count;
+    }
+    public static double minMaxDistanceOptimal(int[] nums, int k) {
+        int n = nums.length;
+        int maxi = Integer.MIN_VALUE;
+        for (int i = 0; i < n - 1; i++) {
+            maxi = Math.max(maxi, nums[i + 1] - nums[i]);
+        }
+        double low = 0, high = maxi;
+        while (high - low > 1e-6) {
+            double mid = low + (high - low) / 2;
+            if (countStations(nums, mid) > k) {
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+        return high;
     }
 
     public static void main(String[] args) {
@@ -62,5 +93,6 @@ public class MinimizeMaxDistanceBwGasStations {
         int k = 5;
         System.out.println(minMaxDistance(nums, k));
         System.out.println(minMaxDistanceBetter(nums, k));
+        System.out.println(minMaxDistanceOptimal(nums, k));
     }
 }
