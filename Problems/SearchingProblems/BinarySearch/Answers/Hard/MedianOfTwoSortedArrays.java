@@ -102,15 +102,15 @@ public class MedianOfTwoSortedArrays {
             int l2 = Integer.MIN_VALUE;
             int r1 = Integer.MAX_VALUE;
             int r2 = Integer.MAX_VALUE;
-            int mid1 = (low + high) >> 1;
-            int mid2 = left - mid1;
-            if (mid1 < n1) r1 = nums1[mid1];
-            if (mid1 - 1 >= 0) l1 = nums1[mid1 - 1];
-            if (mid2 < n2) r2 = nums2[mid2];
-            if (mid2 - 1 >= 0) l2 = nums2[mid2 - 1];
+            int mid1 = (low + high) >> 1;   // mid1 : number of elements to take from nums1
+            int mid2 = left - mid1;  // mid2 : number of elements to take from nums2 which is equal to total - mid1
+            if (mid1 < n1) r1 = nums1[mid1];   // r1 : max element from nums1 only if mid1 < n1
+            if (mid1 - 1 >= 0) l1 = nums1[mid1 - 1]; // l1 : min element from nums1 only if mid1 - 1 >= 0
+            if (mid2 < n2) r2 = nums2[mid2]; // r2 : max element from nums2
+            if (mid2 - 1 >= 0) l2 = nums2[mid2 - 1]; // l2 : min element from nums2
             if(l1 <= r2 && l2 <= r1) {
                 if (total % 2 == 0) {
-                    return (Math.max(l1, l2) + Math.min(r1, r2)) / 2.0;
+                    return (Math.max(l1, l2) + Math.min(r1, r2)) / 2.0;  // for even case, the median might not be an whole number
                 } else {
                     return Math.max(l1, l2);
                 }
