@@ -41,6 +41,7 @@ public class SeachIn2DMatrix {
     // (i / n)th row and (i % n)th column, where n is the number of columns in the 2D matrix
     public static boolean searchMatrixOptimal2(int[][] matrix, int target) {
         int m = matrix.length, n = matrix[0].length;
+        if(n == 0) return false;
         int start = 0, end = m * n - 1;
         while (start <= end) {
             int mid = start + (end - start) / 2;
@@ -51,6 +52,8 @@ public class SeachIn2DMatrix {
         }
         return false;
     }
+
+
 
     public static void main(String[] args) {
         int[][] matrix = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};
