@@ -33,7 +33,7 @@ public class AllSubstrings {
     }
 
     public static void main(String[] args) {
-        String s = "abbcccaa";
+        String s = "babad";
         System.out.println(printAllSubstrings(s));
         System.out.println(printAllSubstringsWithoutSubfunction(s));
 
