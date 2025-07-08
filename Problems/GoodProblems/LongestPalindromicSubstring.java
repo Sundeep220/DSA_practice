@@ -1,4 +1,4 @@
-package Problems.Strings.Medium;
+package Problems.GoodProblems;
 
 public class LongestPalindromicSubstring {
     // https://leetcode.com/problems/longest-palindromic-substring/

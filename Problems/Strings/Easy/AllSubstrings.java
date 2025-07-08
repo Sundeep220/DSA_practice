@@ -18,23 +18,21 @@ public class AllSubstrings {
         return result;
     }
 
-    public static List<String> printAllSubstrings(String s) {
-        int n = s.length();
+    public static List<String> generateSubstrings(String s) {
         List<String> result = new ArrayList<>();
-        for (int start = 0; start < n; start++) {
-            StringBuilder temp = new StringBuilder();
-
-            for (int end = start; end < n; end++) {
-                temp.append(s.charAt(end));
-                result.add(temp.toString());
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j <= n; j++) {
+                result.add(s.substring(i, j));
             }
         }
         return result;
     }
 
+
     public static void main(String[] args) {
         String s = "babad";
-        System.out.println(printAllSubstrings(s));
+        System.out.println(generateSubstrings(s));
         System.out.println(printAllSubstringsWithoutSubfunction(s));
 
     }
