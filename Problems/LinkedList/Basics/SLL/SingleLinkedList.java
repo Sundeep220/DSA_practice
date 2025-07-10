@@ -169,6 +169,17 @@ public class SingleLinkedList {
         System.out.println("null");
     }
 
+
+    public int size() {
+        int count = 0;
+        Node temp = head;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+
     @Override
     public String toString() {
         Node temp = head;
