@@ -1,13 +1,6 @@
 package Problems.LinkedList.Medium;
 
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) { val = x; }
-}
-
-
 public class DeleteNode {
     // Problem Link: https://leetcode.com/problems/delete-node-in-a-linked-list/
 
