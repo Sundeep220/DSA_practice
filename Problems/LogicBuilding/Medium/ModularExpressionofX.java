@@ -13,6 +13,7 @@ public class ModularExpressionofX {
         while (n > 0) {
             if ((n & 1) == 1) { // n is odd or n % 2 == 1
                 result = (result * x) % m; // multiply result by x
+                n = n - 1;
             }
             // square x and halve n until n = 0
             x = (x * x) % m;
@@ -20,5 +21,10 @@ public class ModularExpressionofX {
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        ModularExpressionofX obj = new ModularExpressionofX();
+        System.out.println(obj.PowMod(2, 3, 3));
     }
 }
