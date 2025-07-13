@@ -38,7 +38,7 @@ public class ReverseSLLII {
         }
 
         Node after = end.next;           // node after `right`
-        Node newHead = reverseII(start, after); // reverse [start, end]
+        Node newHead = reverseII(start, after); // reverse [start, end] end exclusive, i.e., does not include end for eg: [1,2,3,4,5] -> [4,3,2,1,5]
 
         // Step 3: connect reversed sublist back
         prev.next = newHead;

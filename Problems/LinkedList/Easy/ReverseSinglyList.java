@@ -32,6 +32,22 @@ public class ReverseSinglyList {
         return prev; // new head of the reversed segment
     }
 
+    // Recursive solution
+    public static Node reverseRecursive(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // Recursive call on the rest of the list
+        Node newHead = reverseRecursive(head.next);
+
+        // Reverse the current node
+        Node front = head.next;
+        front.next = head;
+        head.next = null;
+
+        return newHead;
+    }
+
     public static void main(String[] args) {
        Node head = new Node(10);
        head.next = new Node(20);

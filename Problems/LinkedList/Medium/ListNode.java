@@ -2,9 +2,13 @@ package Problems.LinkedList.Medium;
 
 public class ListNode {
     int val;
-    ListNode next;
+    public ListNode next;
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
+    }
+
+    public String toString() {
+        return val + " -> " + next;
     }
 }
