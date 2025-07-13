@@ -13,7 +13,7 @@ public class ModularExpressionofX {
         while (n > 0) {
             if ((n & 1) == 1) { // n is odd or n % 2 == 1
                 result = (result * x) % m; // multiply result by x
-                n = n - 1;
+//                n = n - 1;  // taken care by n = n >> 1 as it removes LSB(least significant bit)
             }
             // square x and halve n until n = 0
             x = (x * x) % m;
