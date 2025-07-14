@@ -47,4 +47,40 @@ public class ReverseSLLII {
         return dummy.next;
     }
 
+
+    public Node reverseBetween(Node head, int left, int right) {
+        if (head == null || left == right) return head;
+
+        Node prev = null;
+        Node curr = head;
+
+        // Step 1: Reach the node at position `left`
+        for (int i = 1; i < left; i++) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        // `prev` is node before the `left` position (could be null if left == 1)
+        // `curr` is the node at position `left` (start of sublist to reverse)
+        Node start = curr;
+        Node end = curr;
+        for (int i = left; i < right; i++) {
+            end = end.next;
+        }
+
+        Node after = end.next;
+        Node newHead = reverseII(start, after);  // reverse from start to end (exclusive tail)
+
+        if (prev != null) {
+            prev.next = newHead;
+        } else {
+            head = newHead;  // if left == 1, update head
+        }
+
+        start.next = after;  // old start becomes tail, connect to rest
+
+        return head;
+    }
+
+
 }
