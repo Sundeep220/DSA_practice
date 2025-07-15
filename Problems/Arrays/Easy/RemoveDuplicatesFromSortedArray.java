@@ -1,5 +1,7 @@
 package Problems.Arrays.Easy;
 
+import java.util.Arrays;
+
 public class RemoveDuplicatesFromSortedArray {
     public static void main(String[] args) {
         int[] arr = {1,1,2,2,2,3,3};
@@ -8,6 +10,7 @@ public class RemoveDuplicatesFromSortedArray {
         for (int i = 0; i < k; i++) {
             System.out.print(arr[i] + " ");
         }
+        System.out.println(Arrays.toString(arr));
     }
     // Time Complexity: O(n)
     // Space Complexity: O(1)
