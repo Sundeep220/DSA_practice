@@ -10,7 +10,7 @@ These problems help you get comfortable with recursive thinking, base cases, and
 
 1. [Factorial of a number](https://www.geeksforgeeks.org/program-for-factorial-of-a-number/) — *Math*
 2. [Print numbers from N to 1 and 1 to N](https://www.geeksforgeeks.org/print-numbers-1-n-using-recursion/) — *Recursion + Print logic*
-3. [Sum of first N natural numbers](https://www.geeksforgeeks.org/program-for-sum-of-the-first-n-natural-numbers/) — *Math*
+3. [Sum of first N natural numbers](https://www.geeksforgeeks.org/dsa/program-find-sum-first-n-natural-numbers/) — *Math*
 4. [Reverse a string (using recursion)](https://leetcode.com/problems/reverse-string/) — *String / Array*
 5. [Check if a string is a palindrome](https://leetcode.com/problems/valid-palindrome/) — *String / Two Pointers*
 6. [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) — *Math / Recursion*
