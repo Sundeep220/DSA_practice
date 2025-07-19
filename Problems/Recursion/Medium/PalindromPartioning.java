@@ -22,7 +22,7 @@ public class PalindromPartioning {
             if (isPalindrome(s, index, i)) {
                 list.add(s.substring(index, i + 1));
                 helper(s, i + 1, list, ans);
-                list.remove(list.size() - 1);
+                list.removeLast();
             }
         }
     }
