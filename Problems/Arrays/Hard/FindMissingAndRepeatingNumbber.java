@@ -101,7 +101,7 @@ public class FindMissingAndRepeatingNumbber {
         return new int[]{x, y};
     }
 
-
+    // Optimal Solution: Using Bit Manipulation with Bucket Technique
     public static int[] findMissingAndRepeatingXOR(int[] a) {
         int n = a.length; // size of the array
         int xr = 0;

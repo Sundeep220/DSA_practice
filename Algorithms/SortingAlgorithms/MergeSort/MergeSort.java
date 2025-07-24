@@ -49,7 +49,7 @@ public class MergeSort {
 
     public static void mergeSort(int[] arr, int low, int high) {
         if (low >= high) return;
-        int mid = low + (high - low) / 2;
+        int mid = low + (high - low) >> 2;
         mergeSort(arr, low, mid);  // left half
         mergeSort(arr, mid + 1, high); // right half
         merge(arr, low, mid, high);  // merging sorted halves
