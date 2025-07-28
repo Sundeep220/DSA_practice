@@ -11,11 +11,11 @@ public class Union {
     public static int[] union(int[] arr1, int[] arr2) {
         HashSet<Integer> set = new HashSet<Integer>();
 
-        for (int i = 0; i < arr1.length; i++) {
-            set.add(arr1[i]);
+        for (int j : arr1) {
+            set.add(j);
         }
-        for (int i = 0; i < arr2.length; i++) {
-            set.add(arr2[i]);
+        for (int j : arr2) {
+            set.add(j);
         }
 
         int[] res = new int[set.size()];

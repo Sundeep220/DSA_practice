@@ -11,17 +11,20 @@ public class LongestSubsequenceInArray {
     // Solution: Sort the array in ascending order. Then, check for the consecutive elements.
     // Time Complexity: O(nlogn), Space Complexity: O(1)
     public static int longestSubsequence(int[] nums) {
-        int n = nums.length;
-        Arrays.sort(nums); // sort the array in ascending order
+        if (nums.length == 0) return 0;
+        Arrays.sort(nums);  // Sort the array
         int longestSequence = 1;
         int currentSequence = 1;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) {
+                continue; // skip duplicates
+            }
             if (nums[i] == nums[i - 1] + 1) {
                 currentSequence++;
-                longestSequence = Math.max(longestSequence, currentSequence);
             } else {
                 currentSequence = 1;
             }
+            longestSequence = Math.max(longestSequence, currentSequence);
         }
         return longestSequence;
     }

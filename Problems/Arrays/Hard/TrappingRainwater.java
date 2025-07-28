@@ -17,7 +17,7 @@ public class TrappingRainwater {
     }
 
     // Better Solution: O(n) time | O(n) space
-    // Using Prefix Sum
+    // Using Prefix and Suffix max
     public static int trap(int[] height) {
         int n = height.length;
         int[] leftMax = new int[n];

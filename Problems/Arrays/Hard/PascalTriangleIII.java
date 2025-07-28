@@ -22,6 +22,32 @@ public class PascalTriangleIII {
         return res;
     }
 
+    public List<List<Integer>> generateII(int numRows) {
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        for (int i=1; i<=numRows; i++) {
+            ans.add(generateRow(i));
+        }
+
+        return ans;
+    }
+
+    public List<Integer> generateRow(int rowNum) {
+
+        List<Integer> row = new ArrayList<>();
+        int num = 1;
+        row.add(num);
+
+        for (int i=1; i<rowNum; i++) {
+            num *= (rowNum - i);
+            num /= i;
+            row.add(num);
+        }
+
+        return row;
+    }
+
     public static void main(String[] args) {
         int n = 5;
         List<List<Integer>> res = generate(n);
