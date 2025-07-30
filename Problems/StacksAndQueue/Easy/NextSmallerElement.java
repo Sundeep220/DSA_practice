@@ -6,7 +6,7 @@ import java.util.Stack;
 public class NextSmallerElement {
     //
 
-    public int[] nextSmallerElement(int[] arr) {
+    public static int[] nextSmallerElement(int[] arr) {
         int n = arr.length;
         int[] res = new int[n];
         Stack<Integer> stack = new Stack<>();
@@ -27,6 +27,9 @@ public class NextSmallerElement {
 
         return res;
     }
+
+
+
 
     public static void main(String[] args) {
         int[] arr = {4, 8, 5, 2, 25};

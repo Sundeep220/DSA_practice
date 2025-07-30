@@ -1,7 +1,4 @@
-package Problems.StacksAndQueue.Medium;
-
-import Problems.StacksAndQueue.Easy.NextSmallerElement;
-import Problems.StacksAndQueue.Easy.PreviousSmallerElement;
+package Problems.GoodProblems;
 
 import java.util.Stack;
 
@@ -44,12 +41,12 @@ public class SubarrayMinSum {
 
     public static int sumSubarrayMinsOptimal(int[] arr) {
         int n = arr.length;
-        int[] next = findNextSmallerElement(arr);  // Next Smaller Element
+        int[] next = findNextGreaterElement(arr);  // Next Smaller Element
         int[] prev = findPreviousSmallerOrEqualElement(arr);  // Previous Smaller Element
 
         int mod = (int)1e9 + 7;
         long result = 0;
-
+        
         for (int i = 0; i < n; i++) {
             long left = i - prev[i];
             long right = next[i] - i;
@@ -59,7 +56,7 @@ public class SubarrayMinSum {
         return (int)result;
     }
 
-    public static int[] findNextSmallerElement(int[] arr) {
+    public static int[] findNextGreaterElement(int[] arr) {
         int n = arr.length;
         int[] next = new int[n];
         Stack<Integer> stack = new Stack<>();  // Stack to store indices of elements
