@@ -48,7 +48,7 @@ public class SubstringContainingAllThreeCharacters {
     // A substring is valid if it contains at least one a, b, and c.
     //Instead of using a sliding window, track the last seen index of each character.
     //At each index i (processing s[i]), the number of new substrings ending at i that contain all 3 characters is:
-    //i - Math.max(lastSeenA, lastSeenB, lastSeenC) + 1
+    //i - Math.min(lastSeenA, lastSeenB, lastSeenC) + 1
     public static int numberOfSubstringsOptimal2(String s) {
         int res = 0, lastSeenA = -1, lastSeenB = -1, lastSeenC = -1;
         for (int i = 0; i < s.length(); i++) {
