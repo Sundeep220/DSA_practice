@@ -1,4 +1,4 @@
-package Problems.SlidingWindowAndTwoPointers.Medium;
+package Problems.SlidingWindowAndTwoPointers.Hard;
 
 import java.util.HashMap;
 import java.util.HashSet;
