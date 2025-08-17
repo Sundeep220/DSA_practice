@@ -2,6 +2,14 @@ package Problems.SearchingProblems.BinarySearch.OneDArrays.Medium;
 
 public class FloorAndCeil {
     //Problem: https://www.naukri.com/code360/problems/ceiling-in-a-sorted-array_1825401
+    // Ceil of x
+    //Definition: The smallest element ≥ x.
+    //Lower Bound: Returns the first index i, where nums[i] ≥ x.
+    //👉 So yes, ceil(x) = nums[lowerBound(x)] (if index < n).
+    //🔹 Floor of x
+    //Definition: The largest element ≤ x.
+    //Upper Bound: Returns the first index i, where nums[i] > x.
+    //👉 So, floor(x) = nums[upperBound(x) - 1] (if index ≥ 0).
 
     public static int[] findFloorAndCeil(int[] arr, int target) {
         int n = arr.length;

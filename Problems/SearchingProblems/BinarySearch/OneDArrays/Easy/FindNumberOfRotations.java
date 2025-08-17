@@ -6,20 +6,27 @@ public class FindNumberOfRotations{
     // Similar to finding a minimum element in a rotated array, just keep additional check
     // Time Complexity: O(logn) time | O(1) space
     public int findRotations(int[] nums) {
-        int start = 0, end = nums.length - 1;
+        int n = nums.length;
+        int low = 0, high = n - 1;
+        int ans = Integer.MAX_VALUE;
         int index = -1;
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] > nums[mid + 1]) {
-                index = mid;
-                break;
-            } else if (nums[mid] < nums[start]) {
-                end = mid - 1;
-            } else {
-                start = mid + 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[low] <= nums[mid]){ // Left half is sorted, then we take the minimum from left half and then,
+                if(nums[low] <= ans){
+                    ans = nums[low];// update ans here, and then neglect this half as its not needed
+                    index = low;
+                }
+                low = mid + 1;
+            } else {  // Right half is sorted, then we take the minimum from right half and then,
+                if(nums[mid] <= ans){ // update ans here, and then neglect this half as its not needed
+                    ans = nums[mid];
+                    index = mid;
+                }
+                high = mid - 1;
             }
         }
-        return index + 1;
+        return index;
     }
 
     public static void main(String[] args) {

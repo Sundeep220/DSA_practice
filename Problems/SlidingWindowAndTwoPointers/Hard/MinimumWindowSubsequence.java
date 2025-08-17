@@ -61,13 +61,15 @@ public class MinimumWindowSubsequence {
                 if (j == m) { // matched s2 completely
                     int end = i + 1;
                     // move backward to minimize window
-                    j--;
+                    j--;  // point to last char of s2
                     int k = i;
+                    // Move backwards to minimize window
                     while (j >= 0) {
                         if (s1.charAt(k) == s2.charAt(j)) j--;
                         k--;
                     }
-                    k++;
+                    k++; // adjust k to the real start of window
+
                     if (end - k < minLen) {
                         minLen = end - k;
                         startIndex = k;

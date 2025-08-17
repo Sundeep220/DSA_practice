@@ -51,14 +51,7 @@ public class CountingInversions {
                 count += mid - left + 1;
             }
         }
-        while (left <= mid) {
-            temp.add(arr[left]);
-            left++;
-        }
-        while (right <= high) {
-            temp.add(arr[right]);
-            right++;
-        }
+        
         for (int i = low; i <= high; i++) {
             arr[i] = temp.get(i - low);
         }
