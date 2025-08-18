@@ -3,7 +3,7 @@ package Problems.Heaps.Basics;
 import java.util.ArrayList;
 import java.util.List;
 
-class MinHeapArray {
+public class MinHeapArray {
     private final int[] heap;
     private int size;
     private final int capacity;

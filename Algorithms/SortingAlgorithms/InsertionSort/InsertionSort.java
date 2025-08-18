@@ -14,6 +14,7 @@ public class InsertionSort {
         int n = nums.length;
         for(int i=0; i<=n-1; i++){
             int j = i;
+            // for the current array size place all the elements in correct position by comparing thems
             while(j > 0 && nums[j-1] > nums[j]){
                 int t = nums[j-1];
                 nums[j-1] = nums[j];
