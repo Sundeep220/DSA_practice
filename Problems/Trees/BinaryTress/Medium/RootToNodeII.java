@@ -7,7 +7,7 @@ import Problems.Trees.BinaryTress.Basics.binaryTreeImplementation.TreeNode;
 public class RootToNodeII {
     // Problem: Given the root of a binary tree. Return all the root-to-leaf paths in the binary tree.
 
-    public static List<List<Integer>> findPath(TreeNode<Integer> root) {
+    public static List<List<Integer>> findPath(TreeNode<Integer> root, Integer data) {
         List<List<Integer>> res = new ArrayList<>();
         if(root == null) return res;
         dfs(root, new ArrayList<>(), res);
