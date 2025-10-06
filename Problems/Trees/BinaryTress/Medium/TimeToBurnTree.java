@@ -1,6 +1,6 @@
 package Problems.Trees.BinaryTress.Medium;
 import java.util.*;
-import Problems.Trees.BinaryTress.Basics.binaryTreeImplementation.TreeNode<Integer>;
+import Problems.Trees.BinaryTress.Basics.binaryTreeImplementation.TreeNode;
 public class TimeToBurnTree {
     // Problem: https://leetcode.com/problems/time-to-burn-tree-to-forest/
 

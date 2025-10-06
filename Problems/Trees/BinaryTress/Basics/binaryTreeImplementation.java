@@ -10,7 +10,7 @@ public class binaryTreeImplementation<T extends Comparable<T>> {
         public TreeNode<T> left;
         public TreeNode<T> right;
 
-        TreeNode(T data){
+        public TreeNode(T data){
             this.data = data;
             this.left = null;
             this.right = null;
