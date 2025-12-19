@@ -3,7 +3,7 @@ package Problems.StacksAndQueue.Basics;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class StackUsingQueue {
+public class StackUsingOneQueue {
     private final Queue<Integer> queue = new LinkedList<>();
 
     // Push: Enqueue and rotate
@@ -42,7 +42,7 @@ public class StackUsingQueue {
     }
 
     public static void main(String[] args) {
-        StackUsingQueue stack = new StackUsingQueue();
+        StackUsingOneQueue stack = new StackUsingOneQueue();
 
         stack.push(10);
         stack.push(20);
