@@ -3,6 +3,14 @@ import Problems.Trees.BinaryTress.Basics.binaryTreeImplementation.TreeNode;
 import java.util.*;
 public class InorderPredecessor {
     // Same as InOrderSuccessor
+    //Problem Statement: Given a Binary Search Tree and a ‘key’ value which represents the data
+    // of a node in this tree. Return the inorder predecessor and successor of the given node in the BST.
+    // Note:
+    //1. The predecessor of a node in BST is that node that will be visited just before the given node in the
+    // inorder traversal of the tree. Return nullptr if the given node is the one that is visited first in the inorder traversal.
+    //2. The successor of a node in BST is that node that will be visited immediately after the given node in
+    // the inorder traversal of the tree. Return nullptr if the given node is visited last in the inorder traversal.
+
 
     // Naive Solution:
 
