@@ -83,8 +83,8 @@ public class RecoverBST {
             root = root.right;
         }
 
-        int temp = first.data;
-        first.data = second.data;
+        int temp = (Integer) first.data;
+        first.data = (Integer) second.data;
         second.data = temp;
     }
 
