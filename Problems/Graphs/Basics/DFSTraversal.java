@@ -3,6 +3,7 @@ package Problems.Graphs.Basics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class DFSTraversal {
 
@@ -21,6 +22,26 @@ public class DFSTraversal {
                 }
             }
         }
+
+    private void dfsIterative(int start, int[][] adjacencyMatrix, boolean[] visited) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
+
+        while (!stack.isEmpty()) {
+            int node = stack.pop();
+
+            if (!visited[node]) {
+                visited[node] = true;
+
+                // Explore all neighbors
+                for (int j = 0; j < adjacencyMatrix.length; j++) {
+                    if (adjacencyMatrix[node][j] == 1 && !visited[j]) {
+                        stack.push(j);
+                    }
+                }
+            }
+        }
+    }
 
         static List<Integer> dfsOfGraph(int V, List<List<Integer>> adj) {
             boolean[] visited = new boolean[V + 1];
