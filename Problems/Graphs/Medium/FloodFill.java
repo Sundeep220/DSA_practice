@@ -41,15 +41,15 @@ public class FloodFill {
 
     // Better Solution: DFS Iterative soluiton
     // Time Complexity: O(m*n) Space Complexity: O(m*n)
-    public int[][] floodFillBetter(int[][] image, int sr, int sc, int color){
+    public int[][] floodFillBetter(int[][] image, int sr, int sc, int newColor){
         int originalColor = image[sr][sc];
-        if(originalColor == color) return image;
+        if(originalColor == newColor) return image;
 
         int n = image.length;
         int m = image[0].length;
 
         Stack<int[]> stack = new Stack<>();
-        image[sr][sc] = color;
+        image[sr][sc] = newColor;
         stack.push(new int[]{sr, sc});
 
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -63,7 +63,7 @@ public class FloodFill {
                 int nc = c + dir[1];
 
                 if(nr >= 0 && nr < n && nc >= 0 && nc < m && image[nr][nc] == originalColor){
-                    image[nr][nc] = color;
+                    image[nr][nc] = newColor;
                     stack.push(new int[]{nr, nc});
                 }
             }
