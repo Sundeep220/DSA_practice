@@ -1,4 +1,4 @@
-package Problems.Graphs.Medium;
+package Problems.Graphs.BFSDFSProbs.Medium;
 
 import java.util.ArrayList;
 import java.util.HashSet;

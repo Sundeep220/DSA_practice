@@ -1,4 +1,4 @@
-package Problems.Graphs.Hard;
+package Problems.Graphs.BFSDFSProbs.Hard;
 
 import java.util.*;
 
