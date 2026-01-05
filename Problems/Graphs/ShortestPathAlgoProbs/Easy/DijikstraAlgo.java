@@ -20,7 +20,7 @@ public class DijikstraAlgo {
     public int[] shortestPath(int V, int E, int[][] edges) {
 
         // 1. Build adjacency list (UNDIRECTED)
-        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+        List<List<Pair>> adj = new ArrayList<>();
         for (int i = 0; i < V; i++) {
             adj.add(new ArrayList<>());
         }
@@ -40,8 +40,11 @@ public class DijikstraAlgo {
         dist[0] = 0;
 
         // 3. Min-heap (distance, node)
+//        PriorityQueue<Pair> pq =
+//                new PriorityQueue<>((a, b) -> a.wt - b.wt);
         PriorityQueue<Pair> pq =
-                new PriorityQueue<>((a, b) -> a.wt - b.wt);
+                new PriorityQueue<>((a, b) -> Integer.compare(a.wt, b.wt));
+
 
         pq.offer(new Pair(0, 0));
 
