@@ -1,9 +1,6 @@
 package Problems.Graphs.ShortestPathAlgoProbs.Medium;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class NetworkDelayTime {
     // Problem: https://leetcode.com/problems/network-delay-time/
@@ -25,7 +22,7 @@ public class NetworkDelayTime {
         dist[k - 1] = 0;
 
         PriorityQueue<int[]> pq = new PriorityQueue<>(
-                (a, b) -> a[1] - b[1]
+                Comparator.comparingInt(a -> a[1])
         );
 
         pq.offer(new int[]{k - 1, 0});

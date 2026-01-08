@@ -352,3 +352,216 @@ Is deterministic ordering required?
 
 
 
+---
+
+Great question — this is a **very important conceptual twist** for Bellman–Ford.
+
+Let’s handle it **cleanly, logically, and interview-correct**.
+
+---
+
+## 🔁 Bellman–Ford with an **Undirected Graph**
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/20230904155614/Example2.png)
+
+![Image](https://www.researchgate.net/publication/44188584/figure/fig11/AS%3A651498765692940%401532340818539/Converting-an-undirected-graph-to-a-directed-graph-Each-edge-in-the-undirected-graph-is.png)
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/bellmanford2.png)
+
+---
+
+## 🧠 Key Insight (MOST IMPORTANT)
+
+> **Bellman–Ford works only on directed edges.**
+> An **undirected edge** must be treated as **two directed edges**.
+
+### Undirected Edge:
+
+```
+u ---w--- v
+```
+
+### Convert to:
+
+```
+u → v (w)
+v → u (w)
+```
+
+---
+
+## 🚨 VERY IMPORTANT WARNING (Interview Gold)
+
+### ❌ Negative Edge in Undirected Graph
+
+If an undirected edge has **negative weight**, then:
+
+```
+u → v → u
+```
+
+Cycle weight = `w + w = 2w < 0`
+
+➡️ **Negative cycle always exists**
+
+📌 **Conclusion**
+
+> **Bellman–Ford will ALWAYS detect a negative cycle if an undirected graph has a negative edge.**
+
+This is a classic interview trap.
+
+---
+
+## ✅ When Can We Use Bellman–Ford on Undirected Graphs?
+
+| Case                                    | Result                       |
+| --------------------------------------- | ---------------------------- |
+| All weights ≥ 0                         | Works fine                   |
+| Any negative weight                     | ❌ Negative cycle guaranteed  |
+| Need shortest path + negative detection | Convert to directed & run BF |
+
+---
+
+## 🪜 Algorithm Steps (Undirected Graph)
+
+### Step 1: Convert Edges
+
+For each edge `{u, v, w}`:
+
+* Add `{u, v, w}`
+* Add `{v, u, w}`
+
+---
+
+### Step 2: Apply Bellman–Ford Normally
+
+* Initialize distances
+* Relax edges `V−1` times
+* Check negative cycle
+
+---
+
+## ✅ Java Implementation (Undirected Graph → Bellman–Ford)
+
+```java
+import java.util.*;
+
+class Solution {
+    static int[] bellman_ford_undirected(int V, int[][] edges, int src) {
+
+        int INF = (int)1e8;
+
+        // Convert undirected → directed
+        List<int[]> edgeList = new ArrayList<>();
+
+        for (int[] e : edges) {
+            int u = e[0];
+            int v = e[1];
+            int w = e[2];
+
+            edgeList.add(new int[]{u, v, w});
+            edgeList.add(new int[]{v, u, w});
+        }
+
+        int[] dist = new int[V];
+        Arrays.fill(dist, INF);
+        dist[src] = 0;
+
+        // Relax edges V-1 times
+        for (int i = 1; i <= V - 1; i++) {
+            for (int[] e : edgeList) {
+                int u = e[0];
+                int v = e[1];
+                int w = e[2];
+
+                if (dist[u] != INF && dist[u] + w < dist[v]) {
+                    dist[v] = dist[u] + w;
+                }
+            }
+        }
+
+        // Negative cycle detection
+        for (int[] e : edgeList) {
+            int u = e[0];
+            int v = e[1];
+            int w = e[2];
+
+            if (dist[u] != INF && dist[u] + w < dist[v]) {
+                return new int[]{-1};
+            }
+        }
+
+        return dist;
+    }
+}
+```
+
+---
+
+## 🧪 Example (No Negative Edge)
+
+**Input**
+
+```
+0 --1-- 1
+1 --2-- 2
+0 --4-- 2
+```
+
+**Converted Directed Edges**
+
+```
+0→1, 1→0
+1→2, 2→1
+0→2, 2→0
+```
+
+**Output**
+
+```
+[0, 1, 3]
+```
+
+---
+
+## 🧪 Example (Negative Edge → Always Cycle)
+
+```
+0 --(-5)-- 1
+```
+
+Converted:
+
+```
+0 → 1 (-5)
+1 → 0 (-5)
+```
+
+Cycle weight = `-10` ❌
+➡️ Bellman–Ford returns `{-1}`
+
+---
+
+## 🎯 Interview Ready Summary
+
+* Bellman–Ford works on **directed graphs**
+* Undirected graph ⇒ **convert to two directed edges**
+* Negative edge in undirected graph ⇒ **guaranteed negative cycle**
+* Algorithm remains **unchanged after conversion**
+
+---
+
+## 🔥 One-Line Interview Answer
+
+> *For undirected graphs, each edge is converted into two directed edges; however, any negative edge immediately creates a negative cycle.*
+
+---
+
+If you want next:
+
+* 🔹 Why **Dijkstra is preferred** for undirected graphs
+* 🔹 Hybrid cases (some negative, some positive)
+* 🔹 Trick questions asked by interviewers
+* 🔹 Practice problems walkthrough
+
+Just tell me 👌

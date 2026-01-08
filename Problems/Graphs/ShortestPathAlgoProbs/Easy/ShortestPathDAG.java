@@ -17,6 +17,12 @@ public class ShortestPathDAG {
         //Traverse nodes in topological order
         //For each edge u → v (weight w):
 
+    // Why traversing nodes in Topological Order?
+    //If we process nodes in topological order, then:
+        //When we reach a node u
+        //All paths that can reach u are already processed
+        //So dist[u] is already final
+
     class Pair {
         int v, wt;
         Pair(int v, int wt) {

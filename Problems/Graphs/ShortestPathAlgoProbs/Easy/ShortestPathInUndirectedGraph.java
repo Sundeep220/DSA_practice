@@ -37,7 +37,9 @@ public class ShortestPathInUndirectedGraph {
 
         // 3. Min-heap
         PriorityQueue<Pair> pq =
-                new PriorityQueue<>((a, b) -> Integer.compare(a.wt, b.wt));
+                new PriorityQueue<>(Comparator.comparingInt(a -> a.wt));
+//        PriorityQueue<Pair> pq =
+//                new PriorityQueue<>((a, b) -> Integer.compare(a.wt, b.wt));
 
         pq.offer(new Pair(0, 0));
 

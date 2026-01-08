@@ -1,9 +1,6 @@
 package Problems.Graphs.ShortestPathAlgoProbs.Medium;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class PathWithMinimumEffort {
     // Problem: https://leetcode.com/problems/path-with-minimum-effort/
@@ -19,7 +16,7 @@ public class PathWithMinimumEffort {
             Arrays.fill(row, Integer.MAX_VALUE);
         }
         effortMat[0][0] = 0;
-        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        PriorityQueue<int[]> q = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
         q.offer(new int[]{0, 0, 0}); // src will have 0 effort
 
         int[][] dirs = {{-1,0}, {1, 0}, {0,1}, {0, -1}};
