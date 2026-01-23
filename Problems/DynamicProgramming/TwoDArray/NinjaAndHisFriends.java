@@ -154,17 +154,17 @@ public class NinjaAndHisFriends {
         int[][] prev = new int[C][C];
         int[][] curr = new int[C][C];
 
-        // Base case
+        // Base case: last row
         for (int colA = 0; colA < C; colA++) {
             for (int colB = 0; colB < C; colB++) {
                 if (colA == colB)
                     prev[colA][colB] = grid[R - 1][colA];
                 else
-                    prev[colA][colB] =
-                            grid[R - 1][colA] + grid[R - 1][colB];
+                    prev[colA][colB] = grid[R - 1][colA] + grid[R - 1][colB];
             }
         }
 
+        // Bottom-up DP
         for (int row = R - 2; row >= 0; row--) {
             for (int colA = 0; colA < C; colA++) {
                 for (int colB = 0; colB < C; colB++) {
@@ -176,25 +176,24 @@ public class NinjaAndHisFriends {
                             int nA = colA + dA;
                             int nB = colB + dB;
 
-                            if (nA >= 0 && nA < C &&
-                                    nB >= 0 && nB < C) {
-                                max = Math.max(
-                                        max,
-                                        prev[nA][nB]
-                                );
+                            if (nA >= 0 && nA < C && nB >= 0 && nB < C) {
+                                max = Math.max(max, prev[nA][nB]);
                             }
                         }
                     }
 
-                    int value =
-                            (colA == colB)
-                                    ? grid[row][colA]
-                                    : grid[row][colA] + grid[row][colB];
+                    int value = (colA == colB)
+                            ? grid[row][colA]
+                            : grid[row][colA] + grid[row][colB];
 
                     curr[colA][colB] = value + max;
                 }
             }
-            prev = curr.clone();
+
+            // ? swap references instead of clone
+            int[][] temp = prev;
+            prev = curr;
+            curr = temp;
         }
 
         return prev[0][C - 1];
