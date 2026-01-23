@@ -1,4 +1,4 @@
-package Problems.DynamicProgramming.Medium;
+package Problems.DynamicProgramming.TwoDArray;
 
 import java.util.Arrays;
 
