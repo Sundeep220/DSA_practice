@@ -56,5 +56,8 @@ public class Subsets {
         int[] nums = {1, 2, 3};
         System.out.println(subsets(nums));
         System.out.println(subsetsRecursive(nums));
+        List<List<Integer>> res = new ArrayList<>();
+        res = generateSubsetsII(nums, 0, new ArrayList<>(), res);
+        System.out.println(res);
     }
 }
