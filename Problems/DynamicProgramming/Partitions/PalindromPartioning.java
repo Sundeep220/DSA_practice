@@ -1,4 +1,4 @@
-package Problems.Recursion.Medium;
+package Problems.DynamicProgramming.Partitions;
 import java.util.ArrayList;
 import java.util.List;
 
