@@ -63,10 +63,7 @@ public class MinimumCostToCutStick {
 
         for (int k = i + 1; k < j; k++) {
 
-            int cost =
-                    minCostI(i, k, cuts)
-                            + minCostI(k, j, cuts)
-                            + (cuts[j] - cuts[i]);
+            int cost = minCostI(i, k, cuts) + minCostI(k, j, cuts) + (cuts[j] - cuts[i]);
 
             minCost = Math.min(minCost, cost);
         }
@@ -192,6 +189,7 @@ public class MinimumCostToCutStick {
     public int tabulationII(int n, int[] originalCuts) {
         int m = originalCuts.length;
 
+        // Step 1: Prepare cuts array with boundaries
         int[] cuts = new int[m + 2];
         cuts[0] = 0;
         cuts[m + 1] = n;
@@ -199,28 +197,23 @@ public class MinimumCostToCutStick {
         for (int i = 0; i < m; i++) {
             cuts[i + 1] = originalCuts[i];
         }
+//        System.arraycopy(originalCuts, 0, cuts, 1, m);
 
         Arrays.sort(cuts);
 
         int[][] dp = new int[m + 2][m + 2];
-
-        // length = number of cuts in current segment
-        for (int len = 1; len <= m; len++) {
-            for (int i = 1; i + len - 1 <= m; i++) {
-                int j = i + len - 1;
+        for (int i = m; i >= 1; i--) {
+            for (int j = 1; j <= m; j++) {
+                if(i > j) continue;
                 dp[i][j] = Integer.MAX_VALUE;
-
                 for (int k = i; k <= j; k++) {
-                    int cost =
-                            dp[i][k - 1]
-                                    + dp[k + 1][j]
-                                    + (cuts[j + 1] - cuts[i - 1]);
+
+                    int cost = dp[i][k - 1] + dp[k + 1][j] + (cuts[j+1] - cuts[i-1]);
 
                     dp[i][j] = Math.min(dp[i][j], cost);
                 }
             }
         }
-
         return dp[1][m];
     }
 

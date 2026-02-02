@@ -50,11 +50,7 @@ public class MatrixChainMultiplication {
         int minCost = Integer.MAX_VALUE;
 
         for (int k = i; k < j; k++) {
-
-            int cost =
-                    mcmI(i, k, arr)
-                            + mcmI(k + 1, j, arr)
-                            + arr[i - 1] * arr[k] * arr[j];
+            int cost = mcmI(i, k, arr) + mcmI(k + 1, j, arr) + arr[i - 1] * arr[k] * arr[j];
 
             minCost = Math.min(minCost, cost);
         }
