@@ -36,6 +36,8 @@ public class SudokuSolver {
         for (int i = 0; i < 9; i++) {
             if (board[row][i] == c) return false; // Check row
             if (board[i][col] == c) return false; // Check column
+            // 3*(row/3) and 3*(col/3) find top-left of 3x3 sub-box
+            // i/3 and i%3 navigate within the sub-box as i goes 0-8
             if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false; // Check 3x3 box
         }
         return true;
