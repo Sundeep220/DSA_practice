@@ -91,7 +91,7 @@ public class FlattenList {
         if (head == null || head.next == null) return head;
 
         // Step 1: Go deep and flatten the list
-        DualLink mergedHead = flatten(head.next);
+        DualLink mergedHead = flattenOptimal(head.next);
 
         // Step 2: Disconnect the list
         head.next = null;
