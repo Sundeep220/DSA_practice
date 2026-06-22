@@ -8,16 +8,31 @@ public class NextPermutation {
 
     // Brute Force: Generate all possible permutations and find the next permutation
     // Time Complexity: O(n!) Space Complexity: O(n!)
-    public static int[] nextPermutation(int[] nums) {
+    public void nextPermutation(int[] nums) {
         List<int[]> perms = new ArrayList<>();
         permutations(perms, 0, nums);
+
+        // Step: sort permutations lexicographically
+        perms.sort((a, b) -> {
+            for (int i = 0; i < a.length; i++) {
+                if (a[i] != b[i]) return a[i] - b[i];
+            }
+            return 0;
+        });
+
+        // Step: find current permutation
         for (int i = 0; i < perms.size(); i++) {
             if (Arrays.equals(perms.get(i), nums)) {
-                return perms.get(i + 1);
+
+                int[] next = (i < perms.size() - 1)
+                        ? perms.get(i + 1)
+                        : perms.get(0);
+
+                // copy result back into nums
+                System.arraycopy(next, 0, nums, 0, nums.length);
+                return;
             }
         }
-        // it means that the given array is the last permutation, so we return the first permutation
-        return perms.getFirst();
     }
 
     public static void permutations(List<int[]> perms, int start, int[] currentPerm) {
@@ -82,7 +97,7 @@ public class NextPermutation {
 
     public static void main(String[] args) {
         int[] a = {1,2,3};
-        System.out.println(Arrays.toString(nextPermutation(a)));
+//        System.out.println(Arrays.toString(nextPermutation(a)));
         System.out.println(Arrays.toString(nextPermutationOptimal(a)));
     }
 }

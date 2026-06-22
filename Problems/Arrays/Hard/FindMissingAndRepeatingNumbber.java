@@ -95,7 +95,7 @@ public class FindMissingAndRepeatingNumbber {
 
         int val1 = sum - sumN;  // X - Y
         int val2 = sumSquare - sumNSquare; // X2 - Y2
-        val2 = val2 / val1; // X + Y = X2 - Y2 / X - Y
+        val2 = val2 / val1; // X + Y = X2 - Y2 / X - Y, storing in same variable
         int x = (val1 + val2) / 2; // lets say X + Y = 3, X - Y = 1 => 2X = 4 => X = 2
         int y = x - val1; // X + Y = 3, X - Y = 1 => Y = 4 - 2 => Y = 2
         return new int[]{x, y};

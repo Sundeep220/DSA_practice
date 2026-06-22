@@ -65,6 +65,39 @@ public class KokoBanana {
         return low;
     }
 
+    // Another way of writing
+    public int minEatingSpeedII(int[] piles, int h) {
+        int max = 0;
+        for(int pile : piles){
+            max = Math.max(max, pile);
+        }
+
+        int low = 1, high = max;
+        int ans = max;
+
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+
+            if(canFinish(mid, piles, h)){
+                ans = mid;          // possible → try smaller speed
+                high = mid - 1;
+            } else {
+                low = mid + 1;      // too slow → increase speed
+            }
+        }
+        return ans;
+    }
+
+    public boolean canFinish(int k, int[] piles, int h){
+        int hours = 0;
+
+        for(int pile : piles){
+            hours += (pile + k - 1) / k;  // ceil(pile/k)
+        }
+
+        return hours <= h;
+    }
+
     public static void main(String[] args) {
         int[] piles = {3, 6, 7, 11};
         int h = 8;

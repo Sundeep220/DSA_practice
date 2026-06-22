@@ -37,10 +37,10 @@ public class FindPeak {
             if (arr.get(mid - 1) < arr.get(mid) && arr.get(mid) > arr.get(mid + 1))
                 return mid;
 
-            // If we are in the left:
+            // If we are in the left: increasing half
             if (arr.get(mid) > arr.get(mid - 1)) low = mid + 1;
 
-                // If we are in the right:
+                // If we are in the right: decreasing half
                 // Or, arr[mid] is a common point:
             else high = mid - 1;
         }

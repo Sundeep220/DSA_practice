@@ -50,14 +50,14 @@ public class FindPeak {
         return new int[]{maxRow, maxCol}; // This is a guaranteed peak
     }
 
-    // Optimal Solution: Binary Search
+    // Optimal Solution: Binary Search on column, instead of row
     // Time Complexity: O(mlogn) time | O(1) space
     public static int[] findPeakGridOptimal(int[][] mat) {
         int m = mat.length, n = mat[0].length;
         int low = 0, high = n - 1;
         while(low <= high) {
             int mid = low + (high - low) / 2;
-            int maxRow = findMaxInRow(mat,m, mid);
+            int maxRow = findMaxInCol (mat,m, mid);
             int left = mid - 1 >= 0 ? mat[maxRow][mid - 1] : -1;
             int right = mid + 1 < n ? mat[maxRow][mid + 1] : -1;
             if(mat[maxRow][mid] > left && mat[maxRow][mid] > right) return new int[]{maxRow, mid};
@@ -67,7 +67,7 @@ public class FindPeak {
         return new int[]{-1, -1};
     }
 
-    public static int findMaxInRow(int[][] mat, int m, int col) {
+    public static int findMaxInCol (int[][] mat, int m, int col) {
         int maxRow = 0;
         for(int i = 0; i < m; i++) {
             if(mat[i][col] > mat[maxRow][col]) maxRow = i;

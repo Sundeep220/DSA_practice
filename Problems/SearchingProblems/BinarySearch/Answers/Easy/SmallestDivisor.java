@@ -12,7 +12,7 @@ public class SmallestDivisor {
         for (int j : arr) {
             maxi = Math.max(maxi, j);
         }
-
+        int minSum = -1;
         //Find the smallest divisor:
         for (int d = 1; d <= maxi; d++) {
             //Find the summation result:
@@ -21,9 +21,9 @@ public class SmallestDivisor {
                 sum += (int) Math.ceil((double) j / (double) (d));
             }
             if (sum <= limit)
-                return d;
+                minSum = sum;
         }
-        return -1;
+        return minSum;
     }
 
 
@@ -47,17 +47,18 @@ public class SmallestDivisor {
         }
 
         int low = 1, high = maxi;
-
+        int ans = -1;
         //Apply binary search:
         while (low <= high) {
             int mid = (low + high) / 2;
             if (sumByD(arr, mid) <= limit) {
+                ans = mid;
                 high = mid - 1;
             } else {
                 low = mid + 1;
             }
         }
-        return low;
+        return ans;  // or low
     }
 
     public static void main(String[] args) {

@@ -2,6 +2,10 @@ package Problems.SearchingProblems.BinarySearch.Answers.Easy;
 
 public class NthRoot {
     //Return 2 if mid > m
+    //// Return values:
+    //1 → midⁿ == m  ✅ found answer
+    //0 → midⁿ < m   → need bigger number
+    //2 → midⁿ > m   → need smaller number
     public static int func(int mid, int n, int m) {
         long ans = 1;
         for (int i = 1; i <= n; i++) {

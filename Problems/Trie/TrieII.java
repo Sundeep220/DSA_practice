@@ -86,6 +86,9 @@ public class TrieII {
         TrieNodeII node = root;
 
         for (char ch : word.toCharArray()) {
+            if(!node.containsKey(ch)){
+                return;
+            }
             TrieNodeII nextNode = node.get(ch);
             nextNode.decreasePrefix();
             node = nextNode;

@@ -20,11 +20,9 @@ public class MergeTwoSortedList {
         }
         if(l1 != null){
             l3.next = l1;
-            l1 = l1.next;
         }
         if(l2 != null){
             l3.next = l2;
-            l2 = l2.next;
         }
         return temp.next;
     }

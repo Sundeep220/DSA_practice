@@ -62,6 +62,8 @@ public class SortList {
             slow = slow.next;
             fast = fast.next.next;
         }
+
+        // if list is having only one node left, then just return head
         return prev == null ? head : prev;
     }
 

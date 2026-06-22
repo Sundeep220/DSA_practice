@@ -41,7 +41,7 @@ public class SearchInRowOrColWiseSortedMatrix {
     // - So we consider 4 cornors, (0, 0), (0, m-1), (n-1, 0), (n-1, m-1) to find the target
     // - for (0,0) and (n-1, m-1), we dont know which way to traverse and compare as from these points, all elements are in
     //   increasing order in both directions
-    // - for (0, m-1) and (n-1, 0), we know which way to traverse and compare as from these points, all elements are in
+    // - for (0, m-1) and (n-1, 0), we know which way to traverse and compare as from these points, all elements are in increasing order in one direction
     // IN this solution, I will be traversing from (0, m-1)
     public static boolean searchMatrixOptimal(int[][] matrix, int target) {
         int m = matrix.length, n = matrix[0].length;
