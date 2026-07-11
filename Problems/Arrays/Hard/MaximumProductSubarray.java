@@ -30,6 +30,17 @@ public class MaximumProductSubarray {
     // if we have odd number of -ve, then we need to find the prefix and suffix products each -ve number index, and max will be our answer
     // If we encounter any zeros, then we reset our prefix and suffix products = 1
     // Time Complexity: O(n), Space Complexity: O(1)
+    /*
+     * Optimal Solution - Prefix and Suffix Product
+     *
+     * Traverse from both directions simultaneously.
+     * Reset the running product whenever it becomes zero.
+     * The maximum product subarray is captured by either the
+     * prefix traversal or the suffix traversal.
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public static int maxProductOptimal(int[] nums) {
         int n = nums.length;
         int prefix = 1, suffix = 1;

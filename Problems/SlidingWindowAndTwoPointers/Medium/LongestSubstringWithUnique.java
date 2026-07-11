@@ -69,6 +69,7 @@ public class LongestSubstringWithUnique {
     }
 
     // Using HashMap
+    // MOst Optimal
     public int lengthOfLongestSubstringOptimal2(String s) {
         Map<Character, Integer> lastIndex = new HashMap<>();
         int left = 0, maxLen = 0;

@@ -87,39 +87,150 @@ public class MedianOfTwoSortedArrays {
     }
 
     // Optimal Solution: Binary Search
-    // Time Complexity: O(log(min(m, n)))
+    // Time Complexity: O(log(max(m, n)))
     // Space Complexity: O(1)
+    /*
+     * ========================== INTUITION ==========================
+     *
+     * Instead of merging both sorted arrays (O(m + n)), we find the
+     * correct partition (cut) in both arrays using Binary Search.
+     *
+     * We divide the combined sorted array into:
+     *
+     *      Left Half        |       Right Half
+     *
+     * such that:
+     * 1. Left half contains exactly half of the total elements.
+     * 2. Every element in the left half <= every element in the right half.
+     *
+     * We binary search only on nums1 to decide how many elements
+     * should be taken from nums1 into the left partition.
+     *
+     * If we take 'mid1' elements from nums1,
+     * then we must take 'mid2 = left - mid1' elements from nums2.
+     *
+     * We never merge the arrays.
+     * We only compare the four boundary elements around the partitions:
+     *
+     *              nums1                      nums2
+     *
+     *      ...  l1 | r1              ...  l2 | r2
+     *
+     * where,
+     * l1 = largest element on left side of nums1
+     * r1 = smallest element on right side of nums1
+     * l2 = largest element on left side of nums2
+     * r2 = smallest element on right side of nums2
+     *
+     * Correct partition condition:
+     *
+     *      l1 <= r2
+     *      l2 <= r1
+     *
+     * If l1 > r2:
+     *      -> We have taken too many elements from nums1.
+     *      -> Move partition LEFT.
+     *
+     * If l2 > r1:
+     *      -> We have taken too few elements from nums1.
+     *      -> Move partition RIGHT.
+     *
+     * Once the correct partition is found:
+     *
+     * Odd total elements:
+     *      Median = max(l1, l2)
+     *
+     * Even total elements:
+     *      Median = (max(l1,l2) + min(r1,r2)) / 2
+     *
+     * Time Complexity : O(log(max(n1, n2)))   // O(log(min(n1,n2))) if binary searching on smaller array
+     * Space Complexity: O(1)
+     * ==============================================================
+     */
+
     public static double findMedianSortedArraysOptimal(int[] nums1, int[] nums2) {
+
         int n1 = nums1.length;
         int n2 = nums2.length;
-        if(n1 < n2) return findMedianSortedArraysOptimal(nums2, nums1);
+
+        // This implementation performs binary search on the larger array.
+        // (Most standard implementations binary search on the smaller array.)
+        if (n1 < n2)
+            return findMedianSortedArraysOptimal(nums2, nums1);
+
         int low = 0;
         int high = n1;
+
         int total = n1 + n2;
+
+        // Number of elements that should be present in the left partition.
+        // (+1) ensures that for odd length, left side contains one extra element.
         int left = (total + 1) / 2;
+
         while (low <= high) {
+
+            // Number of elements taken from nums1.
+            int mid1 = (low + high) >> 1;
+
+            // Remaining elements are taken from nums2.
+            int mid2 = left - mid1;
+
+            // Boundary values around the partition.
+            // Use -∞ and +∞ to handle edge cases when partition
+            // is at the beginning or end of an array.
             int l1 = Integer.MIN_VALUE;
             int l2 = Integer.MIN_VALUE;
             int r1 = Integer.MAX_VALUE;
             int r2 = Integer.MAX_VALUE;
-            int mid1 = (low + high) >> 1;   // mid1 : number of elements to take from nums1
-            int mid2 = left - mid1;  // mid2 : number of elements to take from nums2 which is equal to total - mid1
-            if (mid1 < n1) r1 = nums1[mid1];   // r1 : max element from nums1 only if mid1 < n1
-            if (mid1 - 1 >= 0) l1 = nums1[mid1 - 1]; // l1 : min element from nums1 only if mid1 - 1 >= 0
-            if (mid2 < n2) r2 = nums2[mid2]; // r2 : max element from nums2
-            if (mid2 - 1 >= 0) l2 = nums2[mid2 - 1]; // l2 : min element from nums2
-            if(l1 <= r2 && l2 <= r1) {
+
+            if (mid1 > 0)
+                l1 = nums1[mid1 - 1];
+
+            if (mid1 < n1)
+                r1 = nums1[mid1];
+
+            if (mid2 > 0)
+                l2 = nums2[mid2 - 1];
+
+            if (mid2 < n2)
+                r2 = nums2[mid2];
+
+            /*
+             * Partition looks like:
+             *
+             * nums1 : .... l1 | r1 ....
+             * nums2 : .... l2 | r2 ....
+             *
+             * If every left element <= every right element,
+             * then we have found the correct partition.
+             */
+            if (l1 <= r2 && l2 <= r1) {
+
+                // Even number of elements:
+                // Median is the average of the middle two elements.
                 if (total % 2 == 0) {
-                    return (Math.max(l1, l2) + Math.min(r1, r2)) / 2.0;  // for even case, the median might not be an whole number
-                } else {
-                    return Math.max(l1, l2);
+                    return (Math.max(l1, l2) + Math.min(r1, r2)) / 2.0;
                 }
-            } else if(l1 > r2) {
+
+                // Odd number of elements:
+                // Left partition has one extra element.
+                return Math.max(l1, l2);
+            }
+
+            // Too many elements taken from nums1.
+            // Move partition to the left.
+            else if (l1 > r2) {
                 high = mid1 - 1;
-            } else {
+            }
+
+            // Too few elements taken from nums1.
+            // Move partition to the right.
+            else {
                 low = mid1 + 1;
             }
         }
+
+        // Should never reach here for valid sorted arrays.
         return 0;
     }
 

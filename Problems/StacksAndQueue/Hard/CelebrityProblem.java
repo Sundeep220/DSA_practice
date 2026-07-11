@@ -2,7 +2,8 @@ package Problems.StacksAndQueue.Hard;
 
 public class CelebrityProblem {
     // Problem: https://www.geeksforgeeks.org/the-celebrity-problem/
-    // Given a square matrix of n people (numbered 0 to n-1) who knows each other, find the celebrity.
+    // Given a square matrix of n people (numbered 0 to n-1) who knows each other, where mat[i][j] == 1 means person i knows person j,
+    // and mat[i][j] == 0 means person i does not know person j, find the celebrity.
     // A celebrity is a person who is known to all other n-1 people, but does not know anyone in return.
     // If there is no celebrity in the party, return -1.
     // Time Complexity: O(n^2)
