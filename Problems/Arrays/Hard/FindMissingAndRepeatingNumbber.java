@@ -78,27 +78,71 @@ public class FindMissingAndRepeatingNumbber {
     }
 
     // Optimal Solution: O(n) time | O(1) space
-    // Using Maths equations, lets assume X is repeating and Y is missing
-    // S - Sn = X - Y
-    // S2 - Sn2 = X2 - Y2
-    // We can solve these equations to get the values of X and Y
+        /*
+    ==========================================================
+    Approach : Math (Sum + Sum of Squares)
+
+    Intuition:
+
+    Let:
+    R = Repeating number
+    M = Missing number
+
+    1. Compare expected sum with actual sum.
+
+    Expected Sum     = n(n+1)/2
+    Actual Sum       = sum(arr)
+
+    => R - M = ActualSum - ExpectedSum
+
+    2. Compare expected square sum with actual square sum.
+
+    Expected Square Sum = n(n+1)(2n+1)/6
+    Actual Square Sum   = sum(arr[i]²)
+
+    => R² - M² = ActualSquareSum - ExpectedSquareSum
+
+    Using:
+    R² - M² = (R - M)(R + M)
+
+    We already know (R - M), so we can find (R + M).
+
+    Finally solve:
+
+    R = ((R - M) + (R + M)) / 2
+    M = (R + M) - R
+
+    Time  : O(n)
+    Space : O(1)
+
+    Note:
+    Use long to avoid integer overflow.
+    ==========================================================
+    */
     public static int[] findMissingAndRepeatingOptimal(int[] nums) {
         int n = nums.length;
-        int[] ans = new int[2];
-        int sum = 0, sumSquare = 0;
-        for (int num : nums) {
-            sum += num;
-            sumSquare += num * num;
-        }
-        int sumN = (n * (n + 1)) / 2;
-        int sumNSquare = (n * (n + 1) * (2 * n + 1)) / 6;
 
-        int val1 = sum - sumN;  // X - Y
-        int val2 = sumSquare - sumNSquare; // X2 - Y2
-        val2 = val2 / val1; // X + Y = X2 - Y2 / X - Y, storing in same variable
-        int x = (val1 + val2) / 2; // lets say X + Y = 3, X - Y = 1 => 2X = 4 => X = 2
-        int y = x - val1; // X + Y = 3, X - Y = 1 => Y = 4 - 2 => Y = 2
-        return new int[]{x, y};
+        long expectedSum = (long) n * (n + 1) / 2;
+        long expectedSquareSum = (long) n * (n + 1) * (2L * n + 1) / 6;
+
+        long actualSum = 0;
+        long actualSquareSum = 0;
+
+        for (int num : nums) {
+            actualSum += num;
+            actualSquareSum += (long) num * num;
+        }
+
+        long diff = actualSum - expectedSum;                  // R - M
+
+        long squareDiff = actualSquareSum - expectedSquareSum; // R² - M²
+
+        long sum = squareDiff / diff;                          // R + M
+
+        int repeating = (int) ((diff + sum) / 2);
+        int missing = (int) (sum - repeating);
+
+        return new int[]{repeating, missing};
     }
 
     // Optimal Solution: Using Bit Manipulation with Bucket Technique
