@@ -38,27 +38,10 @@ public class CountSubarraysWithXORK {
         return count;
     }
 
-    // Optimal Solution: O(n) time | O(1) space
-    public static int subarrayXorOptimal(int[] nums, int k) {
-        int count = 0, xor = 0;
-        for(int num: nums){
-            xor ^= num;
-            if(xor == k){
-                count++;
-            }
-            int xor2 = xor ^ k;
-            if(xor2 == 0){
-                count++; // xor ^ k == 0 can only be true for the first xor == k
-        }
-    }
-    return count;
-    }
-
     public static void main(String[] args) {
         int[] nums = {4, 2, 2, 6, 4};
         int k = 6;
         System.out.println(subarrayXor(nums, k));
         System.out.println(subarrayXorBetter(nums, k));
-        System.out.println(subarrayXorOptimal(nums, k));
     }
 }

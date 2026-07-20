@@ -30,15 +30,15 @@ public class CalculateMinPlatforms {
             Arrays.sort(at);
             Arrays.sort(dt);
             while (i < at.length) {
-            if (at[i] <= dt[j]) {   // new train arrives before the earliest train departs
-                platformCount++;
-                i++;
-            } else {                // a train has departed
-                platformCount--;
-                j++;
+                if (at[i] <= dt[j]) {   // new train arrives before the earliest train departs
+                    platformCount++;
+                    i++;
+                } else {                // a train has departed
+                    platformCount--;
+                    j++;
+                }
+                maxPlatforms = Math.max(maxPlatforms, platformCount);
             }
-            maxPlatforms = Math.max(maxPlatforms, platformCount);
-        }
             return maxPlatforms;
     }
 

@@ -46,6 +46,8 @@ public class CountingInversions {
                 temp.add(arr[left]);
                 left++;
             } else {
+                // All remaining elements in left half
+                // are greater than arr[right]
                 temp.add(arr[right]);
                 right++;
                 count += mid - left + 1;
