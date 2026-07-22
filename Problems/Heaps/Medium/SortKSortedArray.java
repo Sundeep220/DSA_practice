@@ -22,21 +22,27 @@ public class SortKSortedArray {
 
         int index = 0;
 
-        // Step 1: Insert first k+1 elements
+        // The element that belongs at index 0 can currently be anywhere
+        // from index 0 to index k.
+        // Therefore, we need the first k + 1 elements.
         for (int i = 0; i <= k && i < arr.length; i++) {
             minHeap.add(arr[i]);
         }
 
-        // Step 2: Process remaining elements
+        // For every new element:
+        // 1. The smallest element currently in the heap belongs at arr[index].
+        // 2. Add the next element to maintain a window of size k + 1.
         for (int i = k + 1; i < arr.length; i++) {
             arr[index++] = minHeap.poll();
             minHeap.add(arr[i]);
         }
 
-        // Step 3: Empty remaining heap
+        // All remaining elements in the heap are already the remaining
+        // smallest elements in sorted order.
         while (!minHeap.isEmpty()) {
             arr[index++] = minHeap.poll();
         }
+
 
         return arr;
     }

@@ -2,10 +2,7 @@ package Problems.Heaps.Hard;
 
 import Problems.LinkedList.Hard.ListNode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class MergeKSortedList {
     // Problem: https://leetcode.com/problems/merge-k-sorted-lists/
@@ -80,7 +77,7 @@ public class MergeKSortedList {
     public static ListNode mergeKListsOptimal(ListNode[] lists) {
         if(lists == null || lists.length == 0) return null;
 
-        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
         for (ListNode head : lists) {
             if(head != null) minHeap.offer(head);
         }

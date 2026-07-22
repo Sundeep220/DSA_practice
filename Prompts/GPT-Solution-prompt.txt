@@ -1,0 +1,22 @@
+For this algorithm problem, give me a complete progression of all meaningful approaches:
+
+1. Brute Force
+2. Better Approach(es) — include all important variations
+3. Optimal / Best Approach(es) — include multiple solutions if they have the same optimal complexity
+
+For every approach:
+
+* Explain the intuition clearly before the code.
+* Explain the algorithm step by step.
+* Provide a complete Java solution.
+* Add comments inside the code explaining the important logic.
+* At the top of the solution method, add a detailed comment containing:
+
+  * Intuition
+  * Time Complexity
+  * Space Complexity
+* Give a dry run with an example where useful.
+* Clearly explain why each approach is better or worse than the previous one.
+* Compare all approaches at the end in a table with time complexity, space complexity, and the main idea.
+
+Do not skip meaningful alternative solutions. If multiple approaches have the same time complexity but different practical trade-offs, explain the differences and recommend the best practical one.

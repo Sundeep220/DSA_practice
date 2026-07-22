@@ -48,6 +48,69 @@ public class TaskScheduler {
         return time;
     }
 
+    // Another way of wirting above
+    /*
+     * Intuition:
+     * At every CPU interval, execute the task with the highest remaining
+     * frequency. A task that has just been executed cannot be used again
+     * until n intervals have passed, so we put it into a cooldown queue.
+     *
+     * The max heap gives us the task with the highest frequency.
+     * The cooldown queue stores tasks that are temporarily unavailable.
+     *
+     * Time Complexity: O(T log 26) = O(T)
+     * Space Complexity: O(26) = O(1)
+     *
+     * T = total number of tasks
+     */
+    public int leastIntervalII(char[] tasks, int n) {
+
+        int[] frequency = new int[26];
+
+        for (char task : tasks) {
+            frequency[task - 'A']++;
+        }
+
+        PriorityQueue<Integer> maxHeap =
+                new PriorityQueue<>((a, b) -> b - a);
+
+        for (int freq : frequency) {
+            if (freq > 0) {
+                maxHeap.offer(freq);
+            }
+        }
+
+        // Stores: {remaining frequency, time when task becomes available}
+        Queue<int[]> cooldown = new LinkedList<>();
+
+        int time = 0;
+
+        while (!maxHeap.isEmpty() || !cooldown.isEmpty()) {
+
+            time++;
+
+            // First, move tasks whose cooldown has expired
+            if (!cooldown.isEmpty() && cooldown.peek()[1] == time) {
+                maxHeap.offer(cooldown.poll()[0]);
+            }
+
+            if (!maxHeap.isEmpty()) {
+                int remaining = maxHeap.poll();
+                remaining--;
+
+                // If more occurrences remain, put task into cooldown
+                if (remaining > 0) {
+                    cooldown.offer(new int[]{
+                            remaining,
+                            time + n + 1
+                    });
+                }
+            }
+        }
+
+        return time;
+    }
+
 
 
 
@@ -57,7 +120,7 @@ public class TaskScheduler {
 
     // Most Optimal Solution: O(n) time | O(1) space
     // Using Greedy + Maths Approach
-    public static int leastIntervalII(char[] tasks, int n) {
+    public static int leastIntervalIII(char[] tasks, int n) {
         int[] count = new int[26];
         for (char c : tasks) {
             count[c - 'A']++;
@@ -79,6 +142,6 @@ public class TaskScheduler {
         char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
         int n = 2;
         System.out.println(leastIntervalI(tasks, n)); // 8
-        System.out.println(leastIntervalII(tasks, n)); // 8
+        System.out.println(leastIntervalIII(tasks, n)); // 8
     }
 }
