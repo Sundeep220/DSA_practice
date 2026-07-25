@@ -20,25 +20,25 @@ class Tweet implements Comparable<Tweet> {
 
 class User {
     int userId;
-    HashSet<Integer> followers;
+    HashSet<Integer> following;
     LinkedList<Tweet> tweets;
 
-    User(int userId){
+    User(int userId) {
         this.userId = userId;
-        followers = new HashSet<>();
-        tweets = new LinkedList<>();
+        this.following = new HashSet<>();
+        this.tweets = new LinkedList<>();
     }
 
-    public void addTweet(Tweet tweet){
-        this.tweets.addFirst(tweet);
+    public void addFollowing(int followeeId) {
+        following.add(followeeId);
     }
 
-    public void addFollower(int followeeId){
-        this.followers.add(followeeId);
+    public void removeFollowing(int followeeId) {
+        following.remove(followeeId);
     }
 
-    public void removeFollower(int followeeId){
-        this.followers.remove(followeeId);
+    public void addTweet(Tweet tweet) {
+        tweets.addFirst(tweet);
     }
 }
 
@@ -52,11 +52,12 @@ class Twitter {
 
     public void postTweet(int userId, int tweetId) {
         counter++;
-        if(!userMap.containsKey(userId)){
-            userMap.put(userId, new User(userId));
-        }
-
-        User user = userMap.get(userId);
+//        if(!userMap.containsKey(userId)){
+//            userMap.put(userId, new User(userId));
+//        }
+//
+//        User user = userMap.get(userId);
+        User  user = userMap.computeIfAbsent(userId, userid -> new User(userid));
         user.addTweet(new Tweet(counter, tweetId));
     }
 
@@ -68,7 +69,7 @@ class Twitter {
         User user = userMap.get(userId);
         int count = 0;
         // Get self tweets + Tweets of followers
-        for(int follower: user.followers){
+        for(int follower: user.following){
             for(Tweet tweet: userMap.get(follower).tweets){
                 pq.offer(tweet);
                 count++;
@@ -92,24 +93,25 @@ class Twitter {
     }
 
     public void follow(int followerId, int followeeId) {
-        if(!userMap.containsKey(followerId)){
-            userMap.put(followerId, new User(followerId));
-        }
+        User follower = userMap.computeIfAbsent(
+                followerId,
+                User::new
+        );
 
-        if(!userMap.containsKey(followeeId)){
-            userMap.put(followeeId, new User(followeeId));
-        }
+        userMap.computeIfAbsent(
+                followeeId,
+                User::new
+        );
 
-        User user = userMap.get(followerId);
-        user.addFollower(followeeId);
+        follower.addFollowing(followeeId);
     }
 
     public void unfollow(int followerId, int followeeId) {
-        if(!userMap.containsKey(followerId) || !userMap.containsKey(followeeId))
-            return;
+        User follower = userMap.get(followerId);
 
-        User user = userMap.get(followerId);
-        user.removeFollower(followeeId);
+        if (follower != null) {
+            follower.removeFollowing(followeeId);
+        }
     }
 }
 

@@ -65,4 +65,45 @@ public class TopKFrequentWords {
         return res;
     }
 
+    // Time Complexity: O(n + m log m)
+    // Space Complexity: O(m)
+    public List<String> topKFrequentOptimal(
+            String[] words,
+            int k
+    ) {
+
+        Map<String, Integer> frequency =
+                new HashMap<>();
+
+        for (String word : words) {
+            frequency.put(
+                    word,
+                    frequency.getOrDefault(word, 0) + 1
+            );
+        }
+
+        List<String> result =
+                new ArrayList<>(frequency.keySet());
+
+        result.sort((a, b) -> {
+
+            int freqA = frequency.get(a);
+            int freqB = frequency.get(b);
+
+            /*
+             * Higher frequency first
+             */
+            if (freqA != freqB) {
+                return freqB - freqA;
+            }
+
+            /*
+             * Lexicographically smaller word first
+             */
+            return a.compareTo(b);
+        });
+
+        return result.subList(0, k);
+    }
+
 }
