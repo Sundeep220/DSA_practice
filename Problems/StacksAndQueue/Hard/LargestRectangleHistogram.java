@@ -30,6 +30,34 @@ public class LargestRectangleHistogram {
         return maxArea;
     }
 
+
+    // Another way of writing Brute Force Solution
+    // Time Complexity: O(N²)
+    // Space Complexity: O(1)
+    public int largestRectangleAreaBruteII(int[] heights) {
+
+        int n = heights.length;
+        int maxArea = 0;
+
+        for (int left = 0; left < n; left++) {
+
+            int minHeight = Integer.MAX_VALUE;
+
+            for (int right = left; right < n; right++) {
+
+                minHeight = Math.min(minHeight, heights[right]);
+
+                int width = right - left + 1;
+
+                int area = minHeight * width;
+
+                maxArea = Math.max(maxArea, area);
+            }
+        }
+
+        return maxArea;
+    }
+
     // Using Monotonic Stack
     // Time Complexity: O(n) Space Complexity: O(n)
     // Here we will use NSE and PSE to get the index of heights and then calculate the area at each index
@@ -61,6 +89,14 @@ public class LargestRectangleHistogram {
         }
 
         // 3. Calculate max area
+        //L        R
+        //|        |
+        //x █ █ █ x
+        //The usable bars are
+        //L+1 ... R-1
+        // So Width
+        //= (R-1)-(L+1)+1
+        //= R-L-1
         int maxArea = 0;
         for (int i = 0; i < n; i++) {
             int width = nse[i] - pse[i] - 1;

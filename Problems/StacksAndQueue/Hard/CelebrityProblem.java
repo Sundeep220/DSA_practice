@@ -1,5 +1,7 @@
 package Problems.StacksAndQueue.Hard;
 
+import java.util.Stack;
+
 public class CelebrityProblem {
     // Problem: https://www.geeksforgeeks.org/the-celebrity-problem/
     // Given a square matrix of n people (numbered 0 to n-1) who knows each other, where mat[i][j] == 1 means person i knows person j,
@@ -61,6 +63,57 @@ public class CelebrityProblem {
                 return -1;
             }
         }
+        return candidate;
+    }
+
+    /*
+     * Intuition:
+     * Repeatedly compare two people.
+     * Eliminate one of them.
+     *
+     * Verify the final candidate.
+     *
+     * Time Complexity:
+     * O(N)
+     *
+     * Space Complexity:
+     * O(N)
+     */
+
+    public static int celebrityOptimalII(int[][] mat) {
+
+        int n = mat.length;
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < n; i++)
+            stack.push(i);
+
+        while (stack.size() > 1) {
+
+            int a = stack.pop();
+            int b = stack.pop();
+
+            if (mat[a][b] == 1)
+                stack.push(b);
+            else
+                stack.push(a);
+        }
+
+        int candidate = stack.pop();
+
+        for (int i = 0; i < n; i++) {
+
+            if (i == candidate)
+                continue;
+
+            if (mat[candidate][i] == 1)
+                return -1;
+
+            if (mat[i][candidate] == 0)
+                return -1;
+        }
+
         return candidate;
     }
 }

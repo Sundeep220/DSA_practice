@@ -2,6 +2,7 @@ package Problems.StacksAndQueue.Hard;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.PriorityQueue;
 
 public class SlidingWindow {
     // Problem: https://leetcode.com/problems/sliding-window-maximum/
@@ -23,6 +24,38 @@ public class SlidingWindow {
         }
 
         return result;
+    }
+
+    // Better Approach: Sliding Window + Max Heap
+    // Time Complexity: O(n log k)
+    // Space Complexity: O(k)
+
+    public int[] maxSlidingWindowBetter(int[] nums, int k) {
+
+        int n = nums.length;
+        int[] ans = new int[n - k + 1];
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>(
+                (a, b) -> b[0] - a[0]
+        );
+
+        int index = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            pq.offer(new int[]{nums[i], i});
+
+            // Remove elements outside current window
+            while (pq.peek()[1] <= i - k) {
+                pq.poll();
+            }
+
+            if (i >= k - 1) {
+                ans[index++] = pq.peek()[0];
+            }
+        }
+
+        return ans;
     }
 
     // Optimal Approach: Monotonic Deque
