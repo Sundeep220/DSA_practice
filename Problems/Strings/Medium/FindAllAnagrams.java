@@ -97,20 +97,42 @@ public class FindAllAnagrams {
 
         if(matches==26) ans.add(0);
 
-        for(int r=k;r<s.length();r++){
-            int in=s.charAt(r)-'a';
-            int out=s.charAt(r-k)-'a';
+        for (int r = k; r < s.length(); r++) {
 
+            // Character entering the window
+            int in = s.charAt(r) - 'a';
+
+            // Character leaving the window
+            int out = s.charAt(r - k) - 'a';
+
+            // ---------------- Add incoming character ----------------
             window[in]++;
-            if(window[in]==target[in]) matches++;
-            else if(window[in]-1==target[in]) matches--;
 
+            // Became equal after increment -> one more matching frequency
+            if (window[in] == target[in])
+                matches++;
+
+                // Was equal before increment, now exceeded target -> match broken
+            else if (window[in] - 1 == target[in])
+                matches--;
+
+
+            // ---------------- Remove outgoing character ----------------
             window[out]--;
-            if(window[out]==target[out]) matches++;
-            else if(window[out]+1==target[out]) matches--;
 
-            if(matches==26)
-                ans.add(r-k+1);
+            // Became equal after decrement -> one more matching frequency
+            if (window[out] == target[out])
+                matches++;
+
+                // Was equal before decrement, now below target -> match broken
+            else if (window[out] + 1 == target[out])
+                matches--;
+
+
+            // If all 26 character frequencies match,
+            // current window is an anagram
+            if (matches == 26)
+                ans.add(r - k + 1);
         }
 
         return ans;

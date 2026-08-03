@@ -83,8 +83,51 @@ public class RepeatedStringMatchGuide {
     }
 
     // ------------------------------------------------------------
-    // Approach 2 : Java indexOf (Recommended in interviews unless
-    // interviewer asks to implement substring search.)
+    // Approach 2 : Using Java's built-in indexOf()
+    // ------------------------------------------------------------
+    //
+    // Intuition:
+    // ------------
+    // We need to find the minimum number of times string 'a' should
+    // be repeated so that 'b' becomes a substring.
+    //
+    // Observation:
+    // If 'b' is going to appear, then we must first repeat 'a'
+    // until the repeated string's length is at least equal to 'b'.
+    //
+    // However, 'b' may start near the end of one repetition of 'a'
+    // and continue into the next repetition.
+    //
+    // Example:
+    // a = "abcd"
+    // b = "cdabcdab"
+    //
+    // Repeating until length >= b:
+    //
+    // "abcdabcd"      (length = 8)
+    //
+    // b is NOT present.
+    //
+    // Add one more repetition:
+    //
+    // "abcdabcdabcd"
+    //
+    // Now "cdabcdab" appears.
+    //
+    // Therefore, we only need to check:
+    //
+    // 1. Current repeated string
+    // 2. Current repeated string + one extra copy of 'a'
+    //
+    // If still not found, it is impossible.
+    //
+    // Time Complexity:
+    // O((m+n) * n) approximately (depends on Java's indexOf implementation)
+    // In practice, very efficient.
+    //
+    // Space Complexity:
+    // O(m + n)
+    // (StringBuilder stores repeated string)
     // ------------------------------------------------------------
     public int repeatedStringMatchIndexOf(String a, String b) {
 
@@ -105,6 +148,108 @@ public class RepeatedStringMatchGuide {
             return count + 1;
 
         return -1;
+    }
+
+    // ------------------------------------------------------------
+    // Approach 4 : Rabin-Karp
+    // ------------------------------------------------------------
+    // Time:
+    // Building the repeated string: O(n)
+    //Rabin-Karp search:
+        //Pattern hash: O(m)
+        //First window hash: O(m)
+        //Rolling window: O(n)
+    // Average: O(n + m)
+    //Worst: O(n × m)
+    public int repeatedStringMatch(String a, String b) {
+
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+
+        // Repeat until the repeated string becomes at least as long as b
+        while (sb.length() < b.length()) {
+            sb.append(a);
+            count++;
+        }
+
+        // Check current repeated string
+        if (rabinKarp(sb.toString(), b))
+            return count;
+
+        // One extra repetition handles overlap across the boundary
+        sb.append(a);
+
+        if (rabinKarp(sb.toString(), b))
+            return count + 1;
+
+        return -1;
+    }
+
+    // ------------------------------------------------------------
+    // Rabin-Karp String Matching
+    // ------------------------------------------------------------
+    private boolean rabinKarp(String text, String pattern) {
+
+        int n = text.length();
+        int m = pattern.length();
+
+        if (m > n)
+            return false;
+
+        long BASE = 31;
+        long MOD = 1_000_000_007;
+
+        long patternHash = 0;
+        long windowHash = 0;
+        long power = 1;
+
+        // Compute BASE^(m-1)
+        for (int i = 0; i < m - 1; i++) {
+            power = (power * BASE) % MOD;
+        }
+
+        // Compute hash of pattern and first window
+        for (int i = 0; i < m; i++) {
+            patternHash = (patternHash * BASE + (pattern.charAt(i) - 'a' + 1)) % MOD;
+            windowHash = (windowHash * BASE + (text.charAt(i) - 'a' + 1)) % MOD;
+        }
+
+        // Slide the window
+        for (int i = 0; i <= n - m; i++) {
+
+            // If hashes match, verify characters (collision check)
+            if (patternHash == windowHash) {
+                boolean same = true;
+                for (int j = 0; j < m; j++) {
+                    if (text.charAt(i + j) != pattern.charAt(j)) {
+                        same = false;
+                        break;
+                    }
+                }
+
+                if (same)
+                    return true;
+            }
+
+            // Update hash for next window
+            if (i < n - m) {
+
+                // Remove outgoing character's contribution
+                windowHash = (windowHash - (text.charAt(i) - 'a' + 1) * power) % MOD;
+
+                // Convert negative modulo into positive
+                if (windowHash < 0)
+                    windowHash += MOD;
+
+                // Shift remaining characters one position left
+                windowHash = (windowHash * BASE) % MOD;
+
+                // Add incoming character
+                windowHash = (windowHash + (text.charAt(i + m) - 'a' + 1)) % MOD;
+            }
+        }
+
+        return false;
     }
 
     // ------------------------------------------------------------
