@@ -3,6 +3,7 @@ package Problems.Recursion.Hard;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WordBreak {
     // Problem: https://leetcode.com/problems/word-break/
@@ -29,6 +30,38 @@ public class WordBreak {
         return false;
     }
 
+    public boolean wordBreakRecII(String s, List<String> wordDict) {
+
+        Set<String> dict = new HashSet<>(wordDict);
+
+        return solve(s, 0, dict);
+    }
+
+    private boolean solve(String s, int start, Set<String> dict) {
+
+        // Reached the end -> successfully segmented
+        if (start == s.length()) {
+            return true;
+        }
+
+        // Try every possible word starting at `start`
+        for (int end = start + 1; end <= s.length(); end++) {
+
+            String word = s.substring(start, end);
+
+            if (dict.contains(word)) {
+
+                // If the remaining string can be segmented
+                if (solve(s, end, dict)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     // Optmized Solution: Using Memoization
     public boolean wordBreakOptimized(String s, List<String> wordDict) {
         return checkOptimized(s, wordDict, new HashSet<>(wordDict), new HashMap<String, Boolean>());
@@ -53,6 +86,45 @@ public class WordBreak {
         }
 
         memo.put(s, false);
+        return false;
+    }
+
+    public boolean wordBreakMemoII(String s, List<String> wordDict) {
+
+        Set<String> dict = new HashSet<>(wordDict);
+
+        Boolean[] memo = new Boolean[s.length()];
+
+        return solve(s, 0, dict, memo);
+    }
+
+    private boolean solve(String s, int start, Set<String> dict, Boolean[] memo) {
+
+        // Reached the end
+        if (start == s.length()) {
+            return true;
+        }
+
+        // Already calculated
+        if (memo[start] != null) {
+            return memo[start];
+        }
+
+        // Try every possible word starting at start
+        for (int end = start + 1; end <= s.length(); end++) {
+
+            String word = s.substring(start, end);
+
+            if (dict.contains(word)) {
+
+                if (solve(s, end, dict, memo)) {
+                    memo[start] = true;
+                    return true;
+                }
+            }
+        }
+
+        memo[start] = false;
         return false;
     }
 
